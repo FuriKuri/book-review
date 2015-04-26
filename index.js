@@ -1,9 +1,13 @@
 var Hapi = require('hapi');
 
+var port = 8000;
+if (process.env.NODE_PORT) {
+  port = process.env.NODE_PORT;
+}
+
 var server = new Hapi.Server();
 server.connection({ 
-  host: 'localhost', 
-  port: 8000 
+  port: port 
 });
 
 server.route({
@@ -21,3 +25,4 @@ server.route({
 });
 
 server.start();
+console.log("Server started on port " + port + "...");
